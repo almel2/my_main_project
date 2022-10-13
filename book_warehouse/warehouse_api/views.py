@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'book_warehouse/index.html', {})
+    return render(request, 'warehouse_api/index.html', {})
