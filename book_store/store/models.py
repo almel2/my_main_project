@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Author(models.Model):
-    name = models.CharField(_('name'), max_length=150)
+    name = models.CharField(_('name'), max_length=150, null=True)
 
     class Meta:
         verbose_name = _('Author')
@@ -34,12 +34,12 @@ class Category(models.Model):
 class Book(models.Model):
     name = models.CharField(_('name'), max_length=200)
     author = models.ManyToManyField('store.Author', verbose_name=_('author'))
-    isbn = models.CharField(_('isbn'), max_length=50)
+    isbn = models.CharField(_('isbn'), max_length=50, null=True)
     code = models.IntegerField(_('code'))
     publisher = models.ForeignKey('store.Publisher', on_delete=models.CASCADE)
     category = models.ForeignKey('store.Category', verbose_name=_('category'), on_delete=models.PROTECT)
-    str = models.CharField(_('str'), max_length=10)
-    year = models.CharField(_('year'), max_length=10)
+    str = models.CharField(_('str'), max_length=50, null=True)
+    year = models.CharField(_('year'), max_length=50, null=True)
     language = models.CharField(_('language'), max_length=50)
     image = models.ImageField(_('image'))
     price = models.FloatField(_('price'))
