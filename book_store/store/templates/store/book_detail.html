@@ -1,0 +1,17 @@
+{% extends 'store/base.html' %}
+
+{% block title %}
+    Book detail
+{% endblock %}
+
+{% block content %}
+    <h1>Book detail</h1>
+    {{ book.name }}<br>
+    {{ book.price }}<br>
+    <form action="{% url 'cart_add' book.id %}" method="post">
+        {% csrf_token %}
+        {{ cart_form.as_p }}
+        <button type="submit">Add to cart</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'store/base.html' %}
+
+{% block title %}
+    Visits
+{% endblock %}
+
+{% block content %}
+    <h1>Visits</h1>
+    {{ request.session.keys }}<br>
+    {% for key, val in request.session.items %}
+        {{ key }} == {{ val }} <br>
+    {% endfor %}
+
+    <h2>visits = {{ num_visits }}</h2>
+{% endblock %}

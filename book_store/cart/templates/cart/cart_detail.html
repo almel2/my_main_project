@@ -1,0 +1,21 @@
+{% extends 'store/base.html' %}
+
+{% block title %}
+    Cart
+{% endblock %}
+
+{% block content %}
+    <h1>Cart</h1>
+    <h2>{{ cart }}</h2>
+    <h3>{{ request.session.cart }}</h3>
+    {% for i in cart %}
+        {{ i.book }}<br>
+        Book name - {{ i.book.name }}<br>
+        Book price - {{ i.book.price }}
+        <form action="{% url 'cart_remove' i.book.id %}">
+            <button type="submit">Delate</button>
+        </form><br>
+    {% endfor %}
+
+
+{% endblock %}

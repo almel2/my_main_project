@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'accounts.apps.AccountsConfig',
     'store.apps.StoreConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'book_store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'book_store/templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart'
             ],
         },
     },
@@ -128,3 +130,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CART_SESION_ID = 'cart'

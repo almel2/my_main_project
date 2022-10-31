@@ -12,6 +12,23 @@
     <a href="{% url 'logout' %}">logout</a> /
     <a href="{% url 'registration' %}">Registration</a>
 </div>
+<div class="cart">
+    <a href="{% url 'cart_detail' %}"> Cart </a> /
+    <a href="{% url 'visits' %}">Visits</a>
+</div>
+<div class="cart">
+    {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+            Your cart:
+            <a href="{% url "cart_detail" %}">
+                {{ total_items }} book{{ total_items|pluralize }},
+                total price - ${{ cart.get_total_price }}
+            </a>
+        {% else %}
+            Your cart is empty.
+        {% endif %}
+    {% endwith %}
+</div>
 <br>
 <h2>{{ user.email }}</h2>
 {% block content %} {% endblock %}
