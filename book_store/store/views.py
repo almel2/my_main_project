@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from cart.forms import CartAddBookForm
+
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
 
 from store.models import Book
-from cart.forms import CartAddBookForm
 
 
 def index(request):

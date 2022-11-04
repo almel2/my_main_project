@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
+
 from store.models import Book
+
 from .cart import Cart
 from .forms import CartAddBookForm
 
@@ -28,6 +30,7 @@ def cart_remove(request, book_id):
 def cart_detail(request):
     cart = Cart(request)
     return render(request, 'cart/cart_detail.html', {'cart': cart})
+
 
 def session_test(request):
     num_visits = request.session.get('num_visits', 0)

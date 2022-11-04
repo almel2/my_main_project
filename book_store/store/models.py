@@ -48,3 +48,6 @@ class Book(models.Model):
     class Meta:
         verbose_name = _('Book')
         verbose_name_plural = _('Books')
+
+    def __str__(self):
+        return f'Book - {self.name[5:]}, price - {self.price}'

@@ -5,8 +5,6 @@ from django.views.generic import FormView
 from .forms import CustomUserCreationForm
 
 
-
-
 class Registration(FormView):
     form_class = CustomUserCreationForm
     template_name = 'registration/registration.html'

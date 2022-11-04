@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'store.apps.StoreConfig',
     'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [
@@ -131,4 +132,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CART_SESION_ID = 'cart'
+CART_SESSION_ID = 'cart'

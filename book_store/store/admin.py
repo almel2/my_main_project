@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from store.models import Book, Author, Publisher, Category
+from store.models import Author, Book, Category, Publisher
 
 
 @admin.register(Book)
