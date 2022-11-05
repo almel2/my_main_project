@@ -58,6 +58,48 @@ services:
     volumes:
       - redis_data:/data
 
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.9-alpine
+    restart: always
+    networks:
+      - store_net
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  celery_worker:
+    container_name: celery_worker
+    build:
+      context: .
+      dockerfile: docker/book_store/Dockerfile
+    networks:
+      - store_net
+    volumes:
+      - ./book_store/:/usr/app/
+    command: celery -A book_store worker -l INFO
+    env_file:
+      - book_store/store.env
+    depends_on:
+      - rabbitmq
+      - store_db
+
+  celery_beat:
+    container_name: celery_beat
+    build:
+      context: .
+      dockerfile: docker/book_store/Dockerfile
+    networks:
+      - store_net
+    volumes:
+      - ./book_store/:/usr/app/
+    command: celery -A book_store beat -l INFO
+    env_file:
+      - book_store/store.env
+    depends_on:
+      - celery_worker
+      - store_db
+
+
   book_warehouse:
     container_name: book_warehouse
     build:
@@ -98,8 +140,14 @@ volumes:
   book_store:
   book_warehouse:
   redis_data:
+  rabbitmq_data:
 
 networks:
   nginx_net:
   store_net:
   warehouse_net:
+
+# sudo -u rabbitmq rabbitmqctl stop
+# sudo systemctl stop nginx
+
+# Successfully installed django-celery-beat-2.4.0 django-timezone-field-5.0 python-crontab-2.6.0 python-dateutil-2.8.2 tzdata-2022.6

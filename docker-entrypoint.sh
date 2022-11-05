@@ -14,4 +14,7 @@ fi
 python manage.py makemigrations
 python manage.py migrate
 
+#celery -A book_store worker -l info
+#celery -A book_store beat -l info
+
 exec "$@"
