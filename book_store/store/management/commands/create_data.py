@@ -41,7 +41,7 @@ class Command(BaseCommand):
                  code=item['code'],
                  publisher=publisher,
                  category=category,
-                 str=item['str'],
+                 quantity_str=item['str'],
                  year=item['year'],
                  language=item['language'],
                  image=item['image'],
@@ -50,5 +50,5 @@ class Command(BaseCommand):
                  ).save()
             Book.objects.last().author.add(author.id)
             self.stdout.write(self.style.SUCCESS(f'Created data {counter}'))
-        self.stdout.write(self.style.SUCCESS(f'Success create date!'))
+        self.stdout.write(self.style.SUCCESS('Success create date!'))
 # ./manage.py create_data

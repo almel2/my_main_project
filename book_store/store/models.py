@@ -38,12 +38,13 @@ class Book(models.Model):
     code = models.IntegerField(_('code'))
     publisher = models.ForeignKey('store.Publisher', on_delete=models.CASCADE)
     category = models.ForeignKey('store.Category', verbose_name=_('category'), on_delete=models.PROTECT)
-    str = models.CharField(_('str'), max_length=50, null=True)
+    quantity_str = models.CharField(_('str'), max_length=50, null=True)
     year = models.CharField(_('year'), max_length=50, null=True)
     language = models.CharField(_('language'), max_length=50)
     image = models.ImageField(_('image'))
-    price = models.FloatField(_('price'))
+    price = models.DecimalField(_('price'), max_digits=7, decimal_places=2)
     description = models.TextField(_('description'))
+    quantity = models.PositiveIntegerField(_('quantity'), blank=True, null=True)
 
     class Meta:
         verbose_name = _('Book')

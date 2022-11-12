@@ -6,7 +6,7 @@ from store.models import Author, Book, Category, Publisher
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ['name', 'isbn', 'code',
-                    'publisher', 'category', 'str',
+                    'publisher', 'category', 'quantity_str',
                     'year', 'language', 'image', 'price',
                     'description']
 
