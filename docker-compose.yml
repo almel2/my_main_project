@@ -28,6 +28,7 @@ services:
     networks:
       - nginx_net
       - store_net
+      - api_net
     expose:
       - "8000"
     env_file:
@@ -74,6 +75,7 @@ services:
       dockerfile: docker/book_store/Dockerfile
     networks:
       - store_net
+      - api_net
     volumes:
       - ./book_store/:/usr/app/
     command: celery -A book_store worker -l INFO
@@ -90,6 +92,7 @@ services:
       dockerfile: docker/book_store/Dockerfile
     networks:
       - store_net
+      - api_net
     volumes:
       - ./book_store/:/usr/app/
     command: celery -A book_store beat -l INFO
@@ -101,7 +104,7 @@ services:
 
 
   book_warehouse:
-    container_name: book_warehouse
+    container_name: book-warehouse
     build:
       context: .
       dockerfile: docker/book_warehouse/Dockerfile
@@ -112,6 +115,7 @@ services:
     networks:
       - nginx_net
       - warehouse_net
+      - api_net
     env_file:
       - book_warehouse/warehouse.env
     expose:
@@ -146,6 +150,7 @@ networks:
   nginx_net:
   store_net:
   warehouse_net:
+  api_net:
 
 # sudo -u rabbitmq rabbitmqctl stop
 # sudo systemctl stop nginx

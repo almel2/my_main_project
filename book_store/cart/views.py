@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
+from celery_tasks.tasks import data_synchronization, test_celery
 from store.models import Book
 
 from .cart import Cart
@@ -33,6 +34,7 @@ def cart_detail(request):
 
 
 def session_test(request):
+    data_synchronization.delay()
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits
     request.session['num_visits'] += 1

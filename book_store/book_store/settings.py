@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'store.apps.StoreConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'celery_tasks.apps.CeleryTasksConfig',
 
     'django_celery_beat',
 ]

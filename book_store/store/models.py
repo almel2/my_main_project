@@ -34,7 +34,6 @@ class Category(models.Model):
 class Book(models.Model):
     name = models.CharField(_('name'), max_length=200)
     author = models.ManyToManyField('store.Author', verbose_name=_('author'))
-    isbn = models.CharField(_('isbn'), max_length=50, null=True)
     code = models.IntegerField(_('code'))
     publisher = models.ForeignKey('store.Publisher', on_delete=models.CASCADE)
     category = models.ForeignKey('store.Category', verbose_name=_('category'), on_delete=models.PROTECT)

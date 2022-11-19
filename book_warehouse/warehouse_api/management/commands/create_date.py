@@ -25,6 +25,7 @@ class Command(BaseCommand):
                         code=item['code'],
                         author=item['author'],
                         publisher=item['publisher'],
+                        category=item['catalog'],
                         quantity_str=item['str'],
                         year=item['year'],
                         language=item['language'],
